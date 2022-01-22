@@ -19,7 +19,8 @@ public class MaxbotixUltrasonicSensor extends SubsystemBase {
   private int highByteTwosComplement;
   private int lowByteTwosComplement;
 
-  private double reportedDistance;
+  private double finalDistance;
+  private double reportedDistanceWithNegative;
   private double distance;
 
   private boolean isBusy = false;
@@ -41,10 +42,12 @@ public class MaxbotixUltrasonicSensor extends SubsystemBase {
     // This method will be called once per scheduler run
 
     // An example of it's intended usage
-    reportedDistance = getDistance();
+    
+    requestAndReadDistance();
 
-    if (reportedDistance != -1.0) {
-      SmartDashboard.putNumber("Range", reportedDistance);
+    if (reportedDistanceWithNegative != -1.0) {
+      finalDistance = distance;
+      SmartDashboard.putNumber("Range", finalDistance);
     }
 
   }
@@ -71,8 +74,8 @@ public class MaxbotixUltrasonicSensor extends SubsystemBase {
     */
     distance = (lowByteTwosComplement + highByteTwosComplement*256.0)/100.0;
   }
-  /** Gets the distance in meters that the sensor reports. */
-  public double getDistance() {
+
+  private void requestAndReadDistance() {
     if (!isBusy) {
       isBusy = true;
 
@@ -84,11 +87,14 @@ public class MaxbotixUltrasonicSensor extends SubsystemBase {
 
       isBusy = false;
 
-      return distance;
     } else {
-      return -1.0;
+      distance = -1.0;
     }
 
+  }
+    /** Gets the distance in meters that the sensor reports. */
+  public double getDistance() {
+    return finalDistance;
   }
 
 }
