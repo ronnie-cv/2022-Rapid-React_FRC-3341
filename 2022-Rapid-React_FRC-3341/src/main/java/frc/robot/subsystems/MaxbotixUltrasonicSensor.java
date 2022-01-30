@@ -21,6 +21,7 @@ public class MaxbotixUltrasonicSensor extends SubsystemBase {
 
   private double finalDistance;
   private double reportedDistanceWithNegative;
+  private double displacement = 0.0;
   private double distance;
 
   private boolean isBusy = false;
@@ -46,7 +47,7 @@ public class MaxbotixUltrasonicSensor extends SubsystemBase {
     requestAndReadDistance();
 
     if (reportedDistanceWithNegative != -1.0) {
-      finalDistance = distance;
+      finalDistance = distance - displacement;
       SmartDashboard.putNumber("Range", finalDistance);
     }
 
