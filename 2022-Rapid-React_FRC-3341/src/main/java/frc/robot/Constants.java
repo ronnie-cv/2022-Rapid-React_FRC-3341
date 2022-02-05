@@ -1,9 +1,9 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+ 
 package frc.robot;
-
+ 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -12,4 +12,40 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    public final static double threadLength = 0.125;
+    public final static double gearBoxRatio = 4;
+    public static final class DriveTrainPorts {
+        public static final int LeftDriveTalonPort = 1;
+        public static final int RightDriveTalonPort = 2;
+    }
+
+    public static final class MotorPorts {
+            public static final int port1 = 1;
+            public static final int port2 = 2;
+            public static final int port3 = 3;
+            public static final int port4 = 4;
+            public static final int port5 = 5;
+            public static final int port6 = 6;
+         } 
+    
+    public static final class JoystickAxis {
+        public static final int  XAxis = 0;
+        public static final int YAxis = 1;
+    } 
+    public static final class USBOrder {
+        public static final int Zero = 0;
+        public static final int One = 1;
+    }
+    
+    public static final class pidConsts{
+        public static final double pidP = 1;
+        public static final double pidI = 0;
+        public static final double pidD = 0;
+    }
+    public static final class charConsts{
+        public static final double ks = 0;
+        public static final double kg = 0;
+        public static final double kv = 0;
+    }
+}
